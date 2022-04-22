@@ -36,7 +36,7 @@ parser.add_argument('--inputPath', type=str, default="./Julius_tests/Videos/",
 parser.add_argument('--dict_output', type=str, default="./Julius_tests/Dict/",
                     help='relative path of scv output set of landmarks.' +' Default: ./Data/Dataset/dict/')
 
-parser.add_argument('--keypoints_output', type=str, default="./Julius_tests/Keypoints/",
+parser.add_argument('--keypoints_output', type=str, default="./Julius_tests/Videos/",
                     help='relative path of csv output set of landmarks.' + ' Default: ./Data/Dataset/keypoints/')
 
 # verbose
