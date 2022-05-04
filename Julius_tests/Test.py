@@ -8,9 +8,9 @@ filepath="ira_alegria.mp4"
 filepath_local="test2.mp4"
 
 session= Session(
-    region_name='us-east-2',
-    aws_access_key_id='AKIAT3I4RTHMRMKWPIPS',
-    aws_secret_access_key='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'
+    region_name=#,
+    aws_access_key_id=#,
+    aws_secret_access_key=#
 )
 s3 = session.resource("s3")
 
