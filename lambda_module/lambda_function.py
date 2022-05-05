@@ -2,7 +2,8 @@ import io
 from boto3.session import Session
 import time
 import numpy as np
-import cv2
+#import cv2
+import json
 
 filepath="ira_alegria.mp4"
 filepath_local="test2.mp4"
@@ -15,7 +16,17 @@ session= Session(
 s3 = session.resource("s3")
 
 BUCKET="jolepe"
-PATH="ira_alegria.mp4"
+PATH="temp.mp4"
+
+def lambda_handler(event, context):
+    # TODO implement
+
+    start_time = time.time()
+    main()
+    return {
+        'statusCode': 200,
+        'body': json.dumps("--- Program's Execution Time: %s seconds ---" % (time.time() - start_time))
+    }
 
 def generate_bytes_stream(filepath):
     with open(filepath, 'rb') as fh:
@@ -43,15 +54,12 @@ def main():
     #Bytes to numpy
     print(type(stream.getvalue()))
     #np_stream = np.load(stream.getvalue(), allow_pickle=True,encoding = 'bytes')
-    decoded = cv2.imdecode(np.frombuffer(stream.getvalue(), np.uint8), -1)
+    #decoded = cv2.imdecode(np.frombuffer(stream.getvalue(), np.uint8), -1)
 
-    print('OpenCV:\n', type(decoded))
+    #print('OpenCV:\n', type(decoded))
     #print(np_stream.shape)
     bytes_stream2mp4(stream, filepath_local)
 
     print("--Bytes Stream to MP4 conversion finished--")
 
 
-start_time = time.time()
-main()
-print("--- Program's Execution Time: %s seconds ---" % (time.time() - start_time))
