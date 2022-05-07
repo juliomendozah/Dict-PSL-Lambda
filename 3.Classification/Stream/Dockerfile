@@ -1,4 +1,4 @@
-FROM public.ecr.aws/lambda/python:3.9
+FROM python:3.9
 # Copy function code
 COPY app.py ./
 # Copy additional codes
@@ -11,6 +11,7 @@ COPY /checkpoints ./
 COPY /data ./
 COPY /models ./
 # Install external dependencies
+
 RUN apt-get update && \
 apt-get install -y \
 libgl1 \
