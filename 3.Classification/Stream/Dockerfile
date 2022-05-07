@@ -3,7 +3,7 @@ FROM public.ecr.aws/lambda/python:3.9
 COPY app.py ./
 # Copy additional codes
 COPY extract_keypoints.py ./
-COPY extract poseflow.py ./
+COPY extract_poseflow.py ./
 COPY predict.py ./
 COPY transforms.py ./
 # Copy additional directories
