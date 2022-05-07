@@ -14,9 +14,9 @@ COPY /models ./
 RUN apt-get update && \
 apt-get install -y \
 libgl1 \
-cmake\
-make\
-g++\
+cmake \
+make \
+g++ \
 unzip
 # Install the function's dependencies using file requirements.txt
 COPY requirements.txt ./
