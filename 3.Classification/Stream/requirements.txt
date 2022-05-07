@@ -88,10 +88,10 @@ threadpoolctl==2.2.0
 torch==1.7.1
 torchaudio==0.7.0a0+a853dff
 torchmetrics==0.6.0
-torchvision=0.8.2
+torchvision==0.8.2
 tornado==6.1
 tqdm==4.62.3
-typing-extensions=3.10.0.2
+typing-extensions==3.10.0.2
 unidecode==1.2.0
 urllib3==1.26.7
 wandb==0.12.14
