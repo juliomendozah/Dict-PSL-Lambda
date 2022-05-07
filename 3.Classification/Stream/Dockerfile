@@ -10,9 +10,7 @@ COPY transforms.py ./
 COPY /checkpoints ./
 COPY /data ./
 COPY /models ./
-# Install the function's dependencies using file requirements.txt
-COPY requirements.txt ./
-RUN pip3 install -r requirements.txt
+# Install external dependencies
 RUN sudo apt-get update && \
 sudo apt-get install -y \
 libgl1 \
@@ -20,5 +18,8 @@ cmake\
 make\
 g++\
 unzip\
+# Install the function's dependencies using file requirements.txt
+COPY requirements.txt ./
+RUN pip3 install -r requirements.txt
 # Set the CMD to your handler (could also be done as a parameter override outside of the Dockerfile)
 CMD ["app.Lambda_handler"]
