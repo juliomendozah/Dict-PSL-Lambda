@@ -8,8 +8,8 @@ COPY predict.py ./
 COPY transforms.py ./
 # Copy additional directories
 COPY /checkpoints ./
-COPY /data/
-COPY /models./
+COPY /data ./
+COPY /models ./
 # Install the function's dependencies using file requirements.txt
 COPY requirements.txt./
 RUN pip3 install -r requirements.txt
