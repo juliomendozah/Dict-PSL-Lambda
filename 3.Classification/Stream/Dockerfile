@@ -17,7 +17,7 @@ libgl1 \
 cmake\
 make\
 g++\
-unzip\
+unzip
 # Install the function's dependencies using file requirements.txt
 COPY requirements.txt ./
 RUN pip3 install -r requirements.txt
