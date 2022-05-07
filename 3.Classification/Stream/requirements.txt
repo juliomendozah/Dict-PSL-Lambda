@@ -42,7 +42,7 @@ multidict==5.2.0
 munkres==1.1.4
 natsort==7.0.1
 numexpr==2.7.3
-numpy==1.21.2
+numpy==1.22.3
 nvidia-ml==7.352.0
 oauthlib==3.1.1
 olefile==0.46
