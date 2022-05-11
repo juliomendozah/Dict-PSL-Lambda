@@ -41,19 +41,11 @@ RUN apt-get install -y --fix-missing \
     zip \
     && apt-get clean && rm -rf /tmp/* /var/tmp/*
 
+# Include global arg in this stage of the build
+ARG FUNCTION_DIR
 # Copy function code
 RUN mkdir -p ${FUNCTION_DIR}
-COPY app.py ${FUNCTION_DIR}
-# Copy additional codes
-COPY extract_keypoints.py ${FUNCTION_DIR}
-COPY extract_poseflow.py ${FUNCTION_DIR}
-COPY predict.py ${FUNCTION_DIR}
-COPY transforms.py ${FUNCTION_DIR}
-COPY requirements.txt ${FUNCTION_DIR}
-# Copy additional directories
-COPY /checkpoints ${FUNCTION_DIR}
-COPY /data ${FUNCTION_DIR}
-COPY /models ${FUNCTION_DIR}
+COPY app/* ${FUNCTION_DIR}
 
 WORKDIR ${FUNCTION_DIR}
 
