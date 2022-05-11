@@ -7,7 +7,7 @@ import requests
 #aws_api_url = "https://ifl30z1ca5.execute-api.us-east-2.amazonaws.com/default/Stream_Video"
 #aws_api_url = "https://1hltqctd35.execute-api.us-east-2.amazonaws.com/default/Predictor"
 #With container
-aws_api_url = "https://dttju25fc6.execute-api.us-east-2.amazonaws.com/default/jolepe"
+aws_api_url = "https://dttju25fc6.execute-api.us-east-2.amazonaws.com/default/julius"
 # The callback for when a PUBLISH message is received from the server.
 def trigger_lambda():
 
