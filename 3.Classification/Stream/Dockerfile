@@ -38,6 +38,8 @@ WORKDIR ${FUNCTION_DIR}
 # Copy in the built dependencies
 COPY --from=build-image ${FUNCTION_DIR} ${FUNCTION_DIR}
 
+# https://github.com/mitchellharper12/lambda-pthread-nameshim
+COPY --from=make-pthread-nameshim /pthread-nameshim/pthread_shim.so /opt/pthread_shim.so
 # Download models
 RUN python init_mp_holistic.py
 
