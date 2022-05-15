@@ -39,4 +39,4 @@ WORKDIR ${FUNCTION_DIR}
 COPY --from=build-image ${FUNCTION_DIR} ${FUNCTION_DIR}
 
 ENTRYPOINT [ "/usr/local/bin/python", "-m", "awslambdaric" ]
-CMD ["app.Lambda_handler"]
+CMD ["app.lambda_handler"]
