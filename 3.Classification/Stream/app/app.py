@@ -8,16 +8,11 @@ Created on Tue Sep 28 01:42:39 2021
 """
 
 # Standard library imports
-import argparse
 import os
-import sys
-
 
 # Third party imports
 import mediapipe as mp
 import numpy as np
-import pandas as pd
-import pickle as pkl
 import time
 import pytorch_lightning as pl
 import torchvision
@@ -27,8 +22,8 @@ import cv2
 
 from extract_keypoints import keypointsFormat
 from extract_poseflow import read_pose, impute_missing_keypoints, calc_pose_flow
-from transforms import Compose, Scale, MultiScaleCrop, ToFloatTensor, PermuteImage, Normalize, scales, NORM_STD_IMGNET, \
-    NORM_MEAN_IMGNET, CenterCrop, IMAGE_SIZE, DeleteFlowKeypoints, ColorJitter, RandomHorizontalFlip
+from transforms import Compose, Scale, ToFloatTensor, PermuteImage, Normalize, NORM_STD_IMGNET, \
+    NORM_MEAN_IMGNET, CenterCrop, IMAGE_SIZE
 import module
 
 def lambda_handler(event, context):
