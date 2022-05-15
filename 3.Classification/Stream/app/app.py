@@ -70,7 +70,7 @@ def main():
     fps = cap.get(cv2.CAP_PROP_FPS)
 
     # Check if camera opened successfully
-    assert cap.isOpened()
+    #assert cap.isOpened()
 
     idx = 0
 
