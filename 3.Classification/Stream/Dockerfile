@@ -39,7 +39,7 @@ WORKDIR ${FUNCTION_DIR}
 COPY --from=build-image ${FUNCTION_DIR} ${FUNCTION_DIR}
 
 # Download models
-RUN python init_models.py
+RUN python init_mp_holistic.py
 
 ENTRYPOINT [ "/usr/local/bin/python", "-m", "awslambdaric" ]
 CMD ["app.lambda_handler"]
