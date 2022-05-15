@@ -1,15 +1,11 @@
 """Use a trained neural network to predict on a data set."""
-import csv
 import importlib
 from argparse import ArgumentParser
 
 import pytorch_lightning as pl
 import torch
-import torchmetrics
 
 from models import module
-
-import pandas as pd
 
 if __name__ == '__main__':
     # -------------------------------- #

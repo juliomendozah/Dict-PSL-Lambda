@@ -29,7 +29,7 @@ from extract_keypoints import keypointsFormat
 from extract_poseflow import read_pose, impute_missing_keypoints, calc_pose_flow
 from transforms import Compose, Scale, MultiScaleCrop, ToFloatTensor, PermuteImage, Normalize, scales, NORM_STD_IMGNET, \
     NORM_MEAN_IMGNET, CenterCrop, IMAGE_SIZE, DeleteFlowKeypoints, ColorJitter, RandomHorizontalFlip
-from models import module
+import module
 
 def lambda_handler(event, context):
 
