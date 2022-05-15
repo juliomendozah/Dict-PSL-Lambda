@@ -1,7 +1,7 @@
 import torch
 from torch import nn
 
-from .common import FeatureExtractor, LinearClassifier, SelfAttention
+from common import FeatureExtractor, LinearClassifier, SelfAttention
 
 
 class MMTensorNorm(nn.Module):

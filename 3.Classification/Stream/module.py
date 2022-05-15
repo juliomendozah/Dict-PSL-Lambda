@@ -6,7 +6,7 @@ import pytorch_lightning as pl
 import torch
 from torch.optim.lr_scheduler import StepLR
 
-from .vtn_hcpf import VTNHCPF
+from vtn_hcpf import VTNHCPF
 import torchmetrics
 
 import numpy as np
