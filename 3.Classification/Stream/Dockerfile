@@ -39,9 +39,10 @@ WORKDIR ${FUNCTION_DIR}
 COPY --from=build-image ${FUNCTION_DIR} ${FUNCTION_DIR}
 
 # https://github.com/mitchellharper12/lambda-pthread-nameshim
-COPY --from=make-pthread-nameshim /pthread-nameshim/pthread_shim.so /opt/pthread_shim.so
+COPY lambda-pthread-nameshim/* ${FUNCTION_DIR}
+RUN make pthread_shim.so && cp pthread_shim.so /opt
 # Download models
-RUN python init_mp_holistic.py
+RUN python init_mp_resnet.py
 
 ENTRYPOINT [ "/usr/local/bin/python", "-m", "awslambdaric" ]
 CMD ["app.lambda_handler"]
