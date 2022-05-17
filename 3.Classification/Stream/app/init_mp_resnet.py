@@ -1,10 +1,13 @@
 import cv2
 import mediapipe as mp
 import torchvision
+import torch
 
 
 resnet18 = torchvision.models.resnet18(pretrained=True)
 resnet34 = torchvision.models.resnet34(pretrained=True)
+torch.jit.script(resnet18).save("resnet18.ptc")
+torch.jit.script(resnet34).save("resnet34.ptc")
 
 mp_holistic = mp.solutions.holistic
 
