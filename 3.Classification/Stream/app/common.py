@@ -20,10 +20,10 @@ class FeatureExtractor(nn.Module):
 
         if cnn == 'rn18':
             #model = resnet18(pretrained=True)
-            torch.load("resnet18.ptc")
+            model = torch.load("resnet18.ptc")
         elif cnn == 'rn34':
             #model = resnet34(pretrained=True)
-            torch.load("resnet34.ptc")
+            model = torch.load("resnet34.ptc")
         else:
             raise ValueError(f'Unknown value for `cnn`: {cnn}')
 
