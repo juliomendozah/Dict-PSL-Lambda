@@ -42,7 +42,7 @@ COPY --from=build-image ${FUNCTION_DIR} ${FUNCTION_DIR}
 COPY lambda-pthread-nameshim/* ${FUNCTION_DIR}
 RUN make pthread_shim.so && cp pthread_shim.so /opt
 # Download models
-RUN python init_mp_resnet.py
+#RUN python init_mp_resnet.py
 
 ENTRYPOINT [ "/usr/local/bin/python", "-m", "awslambdaric" ]
 CMD ["app.lambda_handler"]

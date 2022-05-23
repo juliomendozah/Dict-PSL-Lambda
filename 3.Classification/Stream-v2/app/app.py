@@ -74,7 +74,17 @@ assert(index_mirror.shape[0] == 133)
 
 multi_scales = [512,640]
 
+def lambda_handler(event, context):
 
+    start_time = time.time()
+    predictions=main()
+    test_time=str(time.time() - start_time)
+    message="--- Program's Execution Time: "+str(test_time)+" ---\n"+"--- Predictions: "+str(predictions)+" ---"
+
+    return {
+        'statusCode': 200,
+        'body': json.dumps(message)
+    }
 def get_parser():
     # parameter priority: command line > config > default
     parser = argparse.ArgumentParser(
@@ -88,7 +98,7 @@ def get_parser():
     parser.add_argument('-Experiment_name', default='')
     parser.add_argument(
         '--config',
-        default='./config/test_joint.yaml',
+        default='test_joint.yaml',
         help='path to the configuration file')
 
     # processor
@@ -270,7 +280,7 @@ def preproccess():
             transforms.Normalize((0.485, 0.456, 0.406), (0.229, 0.224, 0.225))
         ])
 
-        input_path = 'data/mp4/mamá_498.mp4'
+        input_path = 'casa_1418.mp4'
         path = input_path
 
         step = 600
@@ -583,33 +593,35 @@ def import_class(name):
 
 
 #if __name__ == '__main__':
-data = preproccess()
+def main():
+    data = preproccess()
 
-parser = get_parser()
+    parser = get_parser()
 
-meaning = pd.read_json("meaning.json")
-meaning = dict(meaning[0])
-meaning = dict((v,k) for k,v in meaning.items())
+    meaning = pd.read_json("meaning.json")
+    meaning = dict(meaning[0])
+    meaning = dict((v,k) for k,v in meaning.items())
 
-# load arg form config file
-p = parser.parse_args()
-if p.config is not None:
-    with open(p.config, 'r') as f:
-        #default_arg = yaml.load(f)
-        default_arg = yaml.safe_load(f)
-    key = vars(p).keys()
-    for k in default_arg.keys():
-        if k not in key:
-            print('WRONG ARG: {}'.format(k))
-            assert (k in key)
-    parser.set_defaults(**default_arg)
-arg = parser.parse_args()
+    # load arg form config file
+    p = parser.parse_args()
+    if p.config is not None:
+        with open(p.config, 'r') as f:
+            #default_arg = yaml.load(f)
+            default_arg = yaml.safe_load(f)
+        key = vars(p).keys()
+        for k in default_arg.keys():
+            if k not in key:
+                print('WRONG ARG: {}'.format(k))
+                assert (k in key)
+        parser.set_defaults(**default_arg)
+    arg = parser.parse_args()
 
-init_seed(0)
-processor = Processor(arg)
-result = processor.start(data)
+    init_seed(0)
+    processor = Processor(arg)
+    result = processor.start(data)
 
-result = [meaning[val] for val in result]
+    result = [meaning[val] for val in result]
 
-print()
-print(result)
+    print()
+    print(result)
+    return result
