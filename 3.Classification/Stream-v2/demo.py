@@ -2,57 +2,37 @@ from __future__ import print_function
 
 import argparse
 import os
-import pprint
+import time
+import random
 
 import torch
 import torch.nn as nn
 import torch.nn.parallel
 import torch.backends.cudnn as cudnn
 import torch.nn.functional as f
-
-import torchvision.transforms as transforms
-from pose_hrnet import get_pose_net
-# import coremltools as ct
-from collections import OrderedDict
-from config import cfg
-from config import update_config
-
-from PIL import Image
-import numpy as np
-import cv2
-
-from utils import pose_process
-
-import pickle
-import sys
-
-import pandas as pd
-import time
-from collections import Counter
-import pandas as pd
-
-import yaml
-
-import csv
-# torch
-
 import torch.optim as optim
 from torch.autograd import Variable
-
-from tqdm import tqdm
-import shutil
 from torch.optim.lr_scheduler import ReduceLROnPlateau
-import random
-import inspect
+import torchvision.transforms as transforms
 
-import torch.nn.functional as F
+from collections import OrderedDict
+import numpy as np
+import pandas as pd
+import cv2
+import pickle
+import yaml
 
+from pose_hrnet import get_pose_net
+from utils import pose_process
+from config import cfg
 
 mean = (0.485, 0.456, 0.406)
 std = (0.229, 0.224, 0.225)
 
 # 27 points
-selected_joints =  np.concatenate(([0,5,6,7,8,9,10], [91,95,96,99,100,103,104,107,108,111],[112,116,117,120,121,124,125,128,129,132]), axis=0)
+selected_joints =  np.concatenate(([0,5,6,7,8,9,10],
+                                   [91,95,96,99,100,103,104,107,108,111],
+                                   [112,116,117,120,121,124,125,128,129,132]), axis=0)
 num_joints = 27
 
 max_body_true = 1
@@ -67,8 +47,7 @@ index_mirror = np.concatenate([
                 [69,68,67,66,71,70], [63,62,61,60,65,64],
                 np.arange(78,71,-1), np.arange(83,78,-1),
                 [88,87,86,85,84,91,90,89],
-                np.arange(113,134), np.arange(92,113)
-                ]) - 1
+                np.arange(113,134), np.arange(92,113)]) - 1
 
 assert(index_mirror.shape[0] == 133)
 
@@ -270,7 +249,7 @@ def preproccess():
             transforms.Normalize((0.485, 0.456, 0.406), (0.229, 0.224, 0.225))
         ])
 
-        input_path = 'data/mp4/mamá_498.mp4'
+        input_path = 'data/mp4/casa_1418.mp4'
         path = input_path
 
         step = 600
@@ -401,7 +380,6 @@ class Processor():
              self.arg.device) is list else self.arg.device
         self.output_device =  output_device
         Model = import_class(self.arg.model)
-        shutil.copy2(inspect.getfile(Model), self.arg.work_dir)
         self.model = Model(**self.arg.model_args).cpu()
         # print(self.model)
 
